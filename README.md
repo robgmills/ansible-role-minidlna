@@ -1,6 +1,8 @@
 Ansible Role: miniDLNA
 =========
 
+[![Build Status](https://travis-ci.org/robgmills/ansible-role-minidlna.svg?branch=master)](https://travis-ci.org/robgmills/ansible-role-minidlna)
+
 Installs [miniDLNA](https://sourceforge.net/projects/minidlna/) - a lightweight DLNA/UPnP media server.
 
 Requirements
