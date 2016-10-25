@@ -1,31 +1,59 @@
-Role Name
+Ansible Role: miniDLNA
 =========
 
-A brief description of the role goes here.
+Installs [miniDLNA](https://sourceforge.net/projects/minidlna/) - a lightweight DLNA/UPnP media server.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
+```yml
+minidlna:
+  user: minidlna
+  port: 8200
+  media_dirs:
+    - "/var/lib/minidlna"
+    - "A,/var/lib/minidlna/music"
+    - "P,/var/lib/minidlna/photos"
+    - "V,/var/lib/minidlna/videos"
+  network_interface: "eth0"
+  network_interfaces:
+    - "eth1"
+    - "wlan0"
+  listening_ip: "192.168.0.0/24"
+  listening_ips:
+    - "192.168.1.0/8"
+    - "10.0.0.0/16"
+  friendly_name: "Home DLNA Server"
+  model_name: "Windows Media Connect compatible (MiniDLNA)"
+```
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+miniDLNA provides some defaults for the properties listed below:
+
+- `friendly_name`: "hostname: username"
+- `model_name`: "Windows Media Connect compatible (MiniDLNA)"
+
+There is no default value for the following properties:
+
+- `network_interface`/`network_interfaces`: default behavior binds to all; `network_interfaces` appends to (does not override) `network_interface`
+- `listening_ip`/`listening_ips`: default behavior binds to all; `listening_ips` appends to (does not override) `listening_ip`
+
+`media_dirs` follows the standard miniDLNA format of a fully qualified path to a directory to share.  By prepending one of the values `A`, `P` or `V`, you can limit the type of media to share from the subsequent directory to audio, photo, or video (respectively).
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: robgmills.minidlna }
 
 License
 -------
@@ -35,4 +63,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was created in 2016 by [Rob Mills](https://robgmills.com/).

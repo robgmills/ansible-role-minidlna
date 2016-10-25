@@ -1,2 +1,5 @@
 ---
-# defaults file for ansible-role-mini-dnla
+minidlna:
+  port: 8200
+  media_dirs:
+    - /var/lib/minidlna
