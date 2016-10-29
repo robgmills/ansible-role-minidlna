@@ -89,7 +89,7 @@ listening_ip={{ ip }}
 # Port number for HTTP traffic (descriptions, SOAP, media transfer).
 # This option is mandatory (or it must be specified on the command-line using
 # "-p").
-port={{ minidlna.port }}
+port={{ minidlna.port | default(9200) }}
 
 # URL presented to clients (e.g. http://example.com:80).
 #presentation_url=/
