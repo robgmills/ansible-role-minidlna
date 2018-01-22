@@ -1,5 +1,8 @@
 ---
 minidlna:
+  user: minidlna
+  group: minidlna
   port: 8200
+  db_dir: /var/cache/minidlna
   media_dirs:
     - /var/lib/minidlna

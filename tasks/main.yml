@@ -4,6 +4,14 @@
     name: minidlna
     state: present
 
+- name: Ensure that configured cache dir exists
+  file:
+    path: "{{ minidlna.db_dir }}"
+    state: directory
+    owner: "{{ minidlna.user }}"
+    group: "{{ minidlna.group }}"
+    mode: 0755
+
 - name: Copy miniDLNA configuration in place.
   template:
     src: minidlna.conf.j2
