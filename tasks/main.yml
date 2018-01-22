@@ -1,6 +1,8 @@
 ---
 - name: Install miniDNLA
-  apt: name=minidlna state=present
+  apt:
+    name: minidlna
+    state: present
 
 - name: Copy miniDLNA configuration in place.
   template:
@@ -9,8 +11,17 @@
     owner: root
     group: root
     mode: 0644
-#  notify:
-#    - reload minidlna
 
-- name: Ensure miniDLNA is started and enabled to start at boot.
-  service: name=minidlna state=started enabled=yes
+- name: Copy default configuration
+  template:
+    src: minidlna.default.j2
+    dest: /etc/default/minidlna
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure miniDLNA is restarted and enabled to start at boot.
+  service:
+    name: minidlna
+    state: restarted
+    enabled: yes
