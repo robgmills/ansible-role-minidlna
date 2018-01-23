@@ -15,7 +15,9 @@ Role Variables
 ```yml
 minidlna:
   user: minidlna
+  group: minidlna
   port: 8200
+  db_dir: /var/cache/minidlna
   media_dirs:
     - "/var/lib/minidlna"
     - "A,/var/lib/minidlna/music"
